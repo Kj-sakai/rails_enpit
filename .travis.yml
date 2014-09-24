@@ -1,0 +1,19 @@
+language: ruby
+rvm:
+- 2.1.2
+- 1.9.3
+- jruby-19mode
+- rbx-2
+deploy:
+  provider: heroku
+  api_key:
+    secure: fsaibRGZjLGyPLnaUK0bF8REFl/FOEpwRGCV4sCJLWVAmouWJnh5LnQlsJpYZcYKbTpyrnv3g1Cru3xUifDCYADM/LnnIGwGb4N6UVZhkZ1UwOsW3TQuP4+7pOCMDhv1qRQY5qBO6rrswS5tFKfuyMvg9E4rlRTzwmjS/WyAa60=
+  app: protected-mountain-8855
+  on:
+    repo: Kj-sakai/rails_enpit
+
+addons:
+postgresql: "9.3"
+before_script:
+- psql -c 'create database travis_ci_test;' -U postgres
+- cp config/database.yml.travis config/database.yml
